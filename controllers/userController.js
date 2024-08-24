@@ -13,9 +13,11 @@ export const createUser = async (req, res) => {
     }
     try {
         const user = await models.User.create({ name });
-        sendSuccessResponse(res, SUCCESS_MESSAGES.USER_CREATED, { user });
+        return sendSuccessResponse(res, SUCCESS_MESSAGES.USER_CREATED, {
+            user,
+        });
     } catch (error) {
-        sendServerErrorResponse(res, ERROR_MESSAGES.SERVER_ERROR);
+        return sendServerErrorResponse(res, ERROR_MESSAGES.SERVER_ERROR);
     }
 };
 
@@ -27,7 +29,20 @@ export const getUser = async (req, res) => {
         if (!user) {
             return sendNotFoundResponse(res, ERROR_MESSAGES.USER_NOT_FOUND);
         }
-        sendSuccessResponse(res, SUCCESS_MESSAGES.USER_FETCHED, { user });
+        return sendSuccessResponse(res, SUCCESS_MESSAGES.USER_FETCHED, {
+            user,
+        });
+    } catch (error) {
+        return sendServerErrorResponse(res, ERROR_MESSAGES.SERVER_ERROR);
+    }
+};
+
+export const listUsers = async (req, res) => {
+    try {
+        const users = await models.User.findAll();
+        return sendSuccessResponse(res, SUCCESS_MESSAGES.USER_LIST, {
+            users,
+        });
     } catch (error) {
         sendServerErrorResponse(res, ERROR_MESSAGES.SERVER_ERROR);
     }

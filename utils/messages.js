@@ -2,6 +2,7 @@
 const SUCCESS_MESSAGES = {
     USER_CREATED: "User created successfully.",
     USER_FETCHED: "User fetched successfully.",
+    USER_LIST: "User list.",
 };
 
 // Error Messages
