@@ -2,33 +2,36 @@ import { Sequelize } from "sequelize";
 import UserModel from "./user.js";
 import RewardHistoryModel from "./rewardHistory.js";
 import dotenv from "dotenv";
+// Get environment and configuration
 const env = process.env.NODE_ENV || "dev";
-dotenv.config({
-    path: `./${env}.env`,
-});
+dotenv.config({ path: `.${env}.env` });
+// Initialize Sequelize
 console.log(process.env);
-
 const sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,
     process.env.DB_PASSWORD,
     {
         host: process.env.DB_HOST,
-        dialect: process.env.DB_DIALECT,
-        logging: false, // Disable logging
+        port: process.env.DB_PORT,
+        dialect: "postgres",
+        ssl: true,
+        logging: false, // Set to true to enable logging
     }
 );
 
-const models = {
-    User: UserModel(sequelize, Sequelize.DataTypes),
-    RewardHistory: RewardHistoryModel(sequelize, Sequelize.DataTypes),
-};
+// Define models
+const User = UserModel(sequelize, Sequelize.DataTypes);
+const RewardHistory = RewardHistoryModel(sequelize, Sequelize.DataTypes);
 
-Object.keys(models).forEach((modelName) => {
-    if (models[modelName].associate) {
-        models[modelName].associate(models);
-    }
-});
+// Set up model associations
+User.associate({ RewardHistory });
+RewardHistory.associate({ User });
+
+const models = {
+    User,
+    RewardHistory,
+};
 
 export { sequelize, Sequelize };
 export default models;

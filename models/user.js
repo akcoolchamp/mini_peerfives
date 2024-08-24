@@ -1,13 +1,9 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "./index.js";
-
-const User = sequelize.define(
-    "User",
-    {
+const UserModel = (sequelize, DataTypes) => {
+    const User = sequelize.define("User", {
         id: {
             type: DataTypes.INTEGER,
-            autoIncrement: true,
             primaryKey: true,
+            autoIncrement: true,
         },
         name: {
             type: DataTypes.STRING,
@@ -21,21 +17,23 @@ const User = sequelize.define(
             type: DataTypes.INTEGER,
             defaultValue: 0,
         },
-    },
-    {
-        timestamps: true,
-    }
-);
+    });
 
-User.associate = (models) => {
-    User.hasMany(models.RewardHistory, {
-        foreignKey: "givenBy",
-        as: "givenRewards",
-    });
-    User.hasMany(models.RewardHistory, {
-        foreignKey: "givenTo",
-        as: "receivedRewards",
-    });
+    User.associate = (models) => {
+        // User can give P5 and Rewards
+        User.hasMany(models.RewardHistory, {
+            foreignKey: "givenBy",
+            as: "sentP5",
+        });
+
+        // User can receive P5 and Rewards
+        User.hasMany(models.RewardHistory, {
+            foreignKey: "givenTo",
+            as: "receivedP5",
+        });
+    };
+
+    return User;
 };
 
-export default User;
+export default UserModel;

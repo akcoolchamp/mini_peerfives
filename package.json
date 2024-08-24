@@ -4,8 +4,10 @@
   "description": "Mini PeerFives problem",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/akcoolchamp/mini_peerfives.git"
