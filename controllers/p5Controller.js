@@ -95,3 +95,57 @@ export const deleteP5Transaction = async (req, res) => {
         sendServerErrorResponse(res, ERROR_MESSAGES.SERVER_ERROR);
     }
 };
+
+export const getP5Transactions = async (req, res) => {
+    const { id } = req.params;
+    if (!id) {
+        return sendErrorResponse(res, ERROR_MESSAGES.INVALID_INPUT);
+    }
+
+    try {
+        const user = await models.User.findByPk(id);
+        if (!user) {
+            return sendNotFoundResponse(res, ERROR_MESSAGES.USER_NOT_FOUND);
+        }
+
+        const p5Transactions = await models.RewardHistory.findAll({
+            where: {
+                givenBy: id,
+            },
+            order: [["createdAt", "DESC"]],
+        });
+
+        return sendSuccessResponse(res, SUCCESS_MESSAGES.P5_TRANSACTIONS, {
+            p5Transactions,
+        });
+    } catch (error) {
+        sendServerErrorResponse(res, ERROR_MESSAGES.SERVER_ERROR);
+    }
+};
+
+// Get Reward History for a user
+export const getRewards = async (req, res) => {
+    const { id } = req.params;
+    if (!id) {
+        return sendErrorResponse(res, ERROR_MESSAGES.INVALID_INPUT);
+    }
+    try {
+        const user = await models.User.findByPk(id);
+        if (!user) {
+            return sendNotFoundResponse(res, ERROR_MESSAGES.USER_NOT_FOUND);
+        }
+
+        const rewardHistory = await models.RewardHistory.findAll({
+            where: {
+                givenTo: id,
+            },
+            order: [["createdAt", "DESC"]],
+        });
+
+        return sendSuccessResponse(res, SUCCESS_MESSAGES.REWARDS, {
+            rewardHistory,
+        });
+    } catch (error) {
+        sendServerErrorResponse(res, ERROR_MESSAGES.SERVER_ERROR);
+    }
+};

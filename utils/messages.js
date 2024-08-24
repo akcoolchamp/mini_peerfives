@@ -5,6 +5,8 @@ const SUCCESS_MESSAGES = {
     USER_LIST: "User list.",
     P5_SUCCESSFUL: "P5 transaction created successfully.",
     P5_REVERT_SUCCESSFUL: "P5 transaction reverted successfully.",
+    P5_TRANSACTIONS: "P5 transactions",
+    REWARDS: "Rewards",
 };
 
 // Error Messages
