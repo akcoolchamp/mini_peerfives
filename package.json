@@ -1,0 +1,31 @@
+{
+  "name": "mini_peerfives",
+  "version": "1.0.0",
+  "description": "Mini PeerFives problem",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akcoolchamp/mini_peerfives.git"
+  },
+  "author": "Akshay Lamkhade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akcoolchamp/mini_peerfives/issues"
+  },
+  "homepage": "https://github.com/akcoolchamp/mini_peerfives#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
