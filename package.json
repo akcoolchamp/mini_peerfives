@@ -1,0 +1,19 @@
+{
+  "name": "mini_peerfives",
+  "version": "1.0.0",
+  "description": "Mini PeerFives problem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akcoolchamp/mini_peerfives.git"
+  },
+  "author": "Akshay Lamkhade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akcoolchamp/mini_peerfives/issues"
+  },
+  "homepage": "https://github.com/akcoolchamp/mini_peerfives#readme"
+}
