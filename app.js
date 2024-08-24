@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { sequelize } from "./models/index.js";
 import userRoutes from "./routes/user.js";
+import p5Routes from "./routes/p5Routes.js";
 dotenv.config();
 
 const app = express();
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", userRoutes);
+app.use("/p5Routes", p5Routes);
 
 const PORT = process.env.PORT;
 
